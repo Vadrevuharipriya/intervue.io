@@ -2,16 +2,16 @@
 document.addEventListener('DOMContentLoaded', function() {
     const searchInput = document.querySelector('.search-input');
     const resourceCards = document.querySelectorAll('.resource-card');
-
+    
     if (searchInput) {
         searchInput.addEventListener('input', function(e) {
             const searchTerm = e.target.value.toLowerCase();
-
+            
             resourceCards.forEach(card => {
                 const title = card.querySelector('h3').textContent.toLowerCase();
                 const description = card.querySelector('p').textContent.toLowerCase();
                 const category = card.querySelector('.category').textContent.toLowerCase();
-
+                
                 if (title.includes(searchTerm) || description.includes(searchTerm) || category.includes(searchTerm)) {
                     card.style.display = 'block';
                     card.style.opacity = '1';
@@ -26,12 +26,12 @@ document.addEventListener('DOMContentLoaded', function() {
 // FAQ Toggle functionality
 document.addEventListener('DOMContentLoaded', function() {
     const faqItems = document.querySelectorAll('.faq-item');
-
+    
     faqItems.forEach(item => {
         const question = item.querySelector('.faq-question');
         const toggle = item.querySelector('.faq-toggle');
         const answer = item.querySelector('.faq-answer');
-
+        
         question.addEventListener('click', function() {
             // Close all other FAQ items
             faqItems.forEach(otherItem => {
@@ -39,14 +39,14 @@ document.addEventListener('DOMContentLoaded', function() {
                     otherItem.classList.remove('active');
                 }
             });
-
+            
             // Toggle current item
             if (item.classList.contains('active')) {
                 item.classList.remove('active');
             } else {
                 item.classList.add('active');
             }
-
+            
             // Add a subtle animation to the question
             question.style.transform = 'scale(0.98)';
             setTimeout(() => {
@@ -61,17 +61,17 @@ document.addEventListener('DOMContentLoaded', function() {
     const newsletterForm = document.querySelector('.newsletter-form');
     const emailInput = newsletterForm?.querySelector('input[type="email"]');
     const submitButton = newsletterForm?.querySelector('button');
-
+    
     if (newsletterForm) {
         newsletterForm.addEventListener('submit', function(e) {
             e.preventDefault();
-
+            
             if (emailInput.value && emailInput.value.includes('@')) {
                 // Simulate successful subscription
                 submitButton.textContent = '✓';
                 submitButton.style.background = '#10b981';
                 emailInput.value = '';
-
+                
                 setTimeout(() => {
                     submitButton.textContent = '→';
                     submitButton.style.background = '#ffd700';
@@ -90,14 +90,14 @@ document.addEventListener('DOMContentLoaded', function() {
 // Smooth scrolling for anchor links
 document.addEventListener('DOMContentLoaded', function() {
     const links = document.querySelectorAll('a[href^="#"]');
-
+    
     links.forEach(link => {
         link.addEventListener('click', function(e) {
             e.preventDefault();
-
+            
             const targetId = this.getAttribute('href').substring(1);
             const targetElement = document.getElementById(targetId);
-
+            
             if (targetElement) {
                 targetElement.scrollIntoView({
                     behavior: 'smooth',
@@ -111,12 +111,12 @@ document.addEventListener('DOMContentLoaded', function() {
 // Add hover effects to cards
 document.addEventListener('DOMContentLoaded', function() {
     const cards = document.querySelectorAll('.resource-card, .security-card, .product-card');
-
+    
     cards.forEach(card => {
         card.addEventListener('mouseenter', function() {
             this.style.transform = 'translateY(-4px)';
         });
-
+        
         card.addEventListener('mouseleave', function() {
             this.style.transform = 'translateY(0)';
         });
@@ -127,10 +127,10 @@ document.addEventListener('DOMContentLoaded', function() {
 document.addEventListener('DOMContentLoaded', function() {
     const header = document.querySelector('.header');
     let lastScrollTop = 0;
-
+    
     window.addEventListener('scroll', function() {
         const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-
+        
         if (scrollTop > lastScrollTop && scrollTop > 100) {
             // Scrolling down
             header.style.transform = 'translateY(-100%)';
@@ -138,7 +138,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // Scrolling up
             header.style.transform = 'translateY(0)';
         }
-
+        
         lastScrollTop = scrollTop;
     });
 });
@@ -146,7 +146,7 @@ document.addEventListener('DOMContentLoaded', function() {
 // Add loading animation for images
 document.addEventListener('DOMContentLoaded', function() {
     const images = document.querySelectorAll('img');
-
+    
     images.forEach(img => {
         img.addEventListener('load', function() {
             this.style.opacity = '0';
@@ -164,7 +164,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const mobileSidebar = document.querySelector('.mobile-sidebar');
     const mobileSidebarOverlay = document.querySelector('.mobile-sidebar-overlay');
     const mobileSidebarClose = document.querySelector('.mobile-sidebar-close');
-
+    
     if (mobileMenuToggle && mobileSidebar) {
         mobileMenuToggle.addEventListener('click', function() {
             mobileSidebar.classList.add('active');
@@ -172,17 +172,17 @@ document.addEventListener('DOMContentLoaded', function() {
             this.classList.toggle('active');
             document.body.style.overflow = 'hidden'; // Prevent background scrolling
         });
-
+        
         // Close sidebar when clicking close button
         if (mobileSidebarClose) {
             mobileSidebarClose.addEventListener('click', closeMobileSidebar);
         }
-
+        
         // Close sidebar when clicking overlay
         if (mobileSidebarOverlay) {
             mobileSidebarOverlay.addEventListener('click', closeMobileSidebar);
         }
-
+        
         // Close sidebar function
         function closeMobileSidebar() {
             mobileSidebar.classList.remove('active');
@@ -190,7 +190,7 @@ document.addEventListener('DOMContentLoaded', function() {
             mobileMenuToggle.classList.remove('active');
             document.body.style.overflow = ''; // Restore scrolling
         }
-
+        
         // Close sidebar when clicking on nav links
         const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
         mobileNavLinks.forEach(link => {
@@ -205,7 +205,7 @@ document.addEventListener('DOMContentLoaded', function() {
         threshold: 0.1,
         rootMargin: '0px 0px -50px 0px'
     };
-
+    
     const observer = new IntersectionObserver(function(entries) {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -214,7 +214,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }, observerOptions);
-
+    
     // Observe sections for fade-in animation
     const sections = document.querySelectorAll('section');
     sections.forEach(section => {
